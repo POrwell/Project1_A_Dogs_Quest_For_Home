@@ -1,0 +1,88 @@
+* {
+margin: 0;
+padding: 0;
+}
+
+.opening-img {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 600px; 
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width:400px;
+    padding: 20px;
+}
+
+#start-button {
+    margin: 40px;
+    width: 300px;
+    
+}
+
+.paw-btn {
+    width: 200px;
+}
+
+.keyboard-img {
+    width: 100px;
+}
+
+.enter-img {
+    width: 50px;
+}
+
+#gameplay-screen {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(171, 227, 163);
+}
+
+.forest-img {
+    height: 800px;
+}
+
+.cottage-img {
+height: 800px;
+}
+
+#canvas {
+    width: 1280px;
+    height: 800px;
+} 
+
+.status {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.strength-bar {
+text-transform: uppercase;
+font-weight: bold;
+font-size: 20px;
+}
+
+.score {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.game-board {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 76px;
+}
+
+.gameover-screen {
+    background-color: aqua;
+}
+

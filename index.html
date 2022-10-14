@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Dog's Quest for Home</title>
+    <link rel="icon" href="../Project1_A_Dogs_Quest_For_Home/images/icons8-dog-100.png">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <!--SPLASH SCREEN-->
+<div id = "splash-screen">
+    <header>
+    <h1>A Dog's Quest for Home</h1>
+    <img src="./images/Blue-startscreen.jpg" alt="cartoon dog" class="opening-img">
+</header>
+<div class = "instructions">
+    <h2>How to Play</h2>
+    <p>Help navigate Blue from her life in an abandoned forest to a warm 
+        home with a loving family. Collect resources to help keep her strength up, 
+        but be sure to dodge any danger as you go, or she may lose too much strength and have to begin her quest again!
+        </p>
+    <ul>
+        <li>move Blue around using the arrow keys</li>
+        <li>collect resources using Enter to build strength</li> <!--DELETE IF NOT MANAGED!-->
+        <li>dodge dangers to avoid a drop in strength</li>
+    </ul>
+    <div>
+        <img class="keyboard-img" src="./images/keyboard (1).png">
+        <img class="enter-img" src="./images/enter.png">
+    </div>
+    <button id="start-button">
+        <p>Let's Go!</p>
+    <img class="paw-btn" src="images/paw-print.png">
+    </button>
+</div>
+</div>
+
+<!--GAMEPLAY SCREEN-->
+<div id = "gameplay-screen">
+    <div class="status">
+        <article class="strength-bar">Blue's Strength </article>
+        <article class="score">Score </article>
+    </div>
+<div class = game-board>
+    <img class="forest-img" src="./images/dark-forest.jpg">
+    <canvas id="canvas"></canvas>
+    <img class="cottage-img" src="./images/cottage.jpg">
+</div>
+</div>
+
+
+
+<div id = "gameover-screen">
+    <p>Hello!</p>
+</div>
+
+
+    <script type="text/javascript" src="./game.js"></script>
+</body>
+</html>

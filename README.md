@@ -74,6 +74,12 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
     moveResource()
     drawResource()
 }
+- create map
+- create compass
+- create bone
+- create water
+- create ball
+- create pigeon
 - check collision
 - add to strength bar
 
@@ -85,6 +91,11 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
     moveDanger()
     drawDanger()
 }
+- create kick
+- create rubbish
+- create poison
+- create sinkhole
+- create cat
 - check collision
 - reduce strength bar 
 
