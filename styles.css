@@ -41,7 +41,7 @@ width: 600px;
 #gameplay-screen {
     display: flex;
     flex-direction: column;
-    background-color: rgb(171, 227, 163);
+    background-color: rgb(171, 227, 163); 
 }
 
 .forest-img {
@@ -51,11 +51,6 @@ width: 600px;
 .cottage-img {
 height: 800px;
 }
-
-#canvas {
-    width: 1280px;
-    height: 800px;
-} 
 
 .status {
     display: flex;
