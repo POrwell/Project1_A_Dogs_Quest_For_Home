@@ -60,13 +60,15 @@ let ballHeight = 60;
 let pigeonWidth = 80;
 let pigeonHeight = 80;
 let resourcesMove = -5;
+let resourcesStartX = canvasWidth - 100;
+let resourcesStartY = 500;
 
 const resourcesArr = [
-  {img: mapImg, x: 700, y: 500, width: mapWidth, height: mapHeight},
-  {img: compassImg, x: 700, y: 500, width: compassWidth, height: compassHeight},
-  {img: boneImg, x: 700, y: 500, width: boneWidth, height: boneHeight},
-  {img: ballImg, x: 700, y: 500, width: ballWidth, height: ballHeight},
-  {img: pigeonImg, x: 700, y: 500, width: pigeonWidth, height: pigeonHeight},
+  {img: mapImg, x: resourcesStartX, y: resourcesStartY, width: mapWidth, height: mapHeight},
+  {img: compassImg, x: resourcesStartX, y: resourcesStartY, width: compassWidth, height: compassHeight},
+  {img: boneImg, x: resourcesStartX, y: resourcesStartY, width: boneWidth, height: boneHeight},
+  {img: ballImg, x: resourcesStartX, y: resourcesStartY, width: ballWidth, height: ballHeight},
+  {img: pigeonImg, x: resourcesStartX, y: resourcesStartY, width: pigeonWidth, height: pigeonHeight},
 ]
 
 const selectedResourcesArr = [];
@@ -147,14 +149,14 @@ const animateBackground = () => {
   drawBlue();
   moveBlueXAxis();
   moveBlueYAxis();
-  if (gameId % 500 === 0) {
-    selectRandomResource();
-    console.log(selectedResourcesArr);
+  if (gameId % 100 === 0) {
+    selectRandomResource()
   };
-  selectedResourcesArr.forEach((resource) => {
-    drawResource(resource.img, resource.x, resource.y, resource.width, resource.height)
-  });
-};
+
+  drawResource();
+
+  moveResource();
+  };
 
 const clearCanvas = () => {ctx.clearRect(0, 0, canvasWidth, canvasHeight)};
 const drawCanvas = () => {ctx.drawImage(backgroundImg1, backgroundImg1Start, 0, canvasWidth, canvasHeight)};
@@ -225,21 +227,26 @@ const moveCanvas5 = () => {
               }
             }
 
-            const moveBlueYAxis = () => {
+    const moveBlueYAxis = () => {
               if (blueStartY + blueMoveY >= 0 && blueStartY + blueMoveY <= canvasHeight-blueHeight)
               blueStartY += blueMoveY;
             }
 
-            const selectRandomResource = () => {
+    const selectRandomResource = () => {
               let randomNumGen = Math.floor(Math.random() * ((resourcesArr.length - 1) - 0 + 1) + 0);
               let randomResource = resourcesArr[randomNumGen];
               selectedResourcesArr.push(randomResource)};
 
-              const drawResource = (image, x, y, width, height) => {
-                ctx.drawImage(image, x, y, width, height)
+    const drawResource = () => {
+      let indexToSelect = selectedResourcesArr.length - 1;
+      let selectedResource = selectedResourcesArr[indexToSelect];
+                ctx.drawImage(selectedResource.img, selectedResource.x, selectedResource.y, selectedResource.width, selectedResource.height)
               }
               
-          
+    const moveResource = () => {
+      resourcesStartX += resourcesMove;
+    }
+
             document.addEventListener("keydown", event => {
               if(event.key === "ArrowUp") {
                 blueMoveY = blueMoveUp;
