@@ -7,8 +7,8 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 
 ## MVP (DOM - Canvas)
 # Splash 
-- Static Blue cartoon
-- Name of game
+- Static Blue cartoon 
+- Name of game 
 - List of instructions
 - Keys diagram
 - Start button in shape of paw
@@ -77,7 +77,6 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 - create map
 - create compass
 - create bone
-- create water
 - create ball
 - create pigeon
 - check collision
@@ -91,11 +90,11 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
     moveDanger()
     drawDanger()
 }
-- create kick
-- create rubbish
+- create rubbish1
+- create rubbish2
 - create poison
 - create sinkhole
-- create cat
+- create beartrap
 - check collision
 - reduce strength bar 
 

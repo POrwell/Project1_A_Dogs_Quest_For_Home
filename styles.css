@@ -3,11 +3,29 @@ margin: 0;
 padding: 0;
 }
 
-.opening-img {
+#splash-screen {
+    background-image: url("./images/cottage.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: center;
-width: 600px; 
+}
+
+.opening-img {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .instructions {
@@ -21,8 +39,8 @@ width: 600px;
 }
 
 #start-button {
-    margin: 40px;
     width: 300px;
+    background-image: "./images/paw-print";
     
 }
 
@@ -42,6 +60,7 @@ width: 600px;
     display: flex;
     flex-direction: column;
     background-color: rgb(171, 227, 163); 
+    height: 100vh;
 }
 
 .forest-img {
