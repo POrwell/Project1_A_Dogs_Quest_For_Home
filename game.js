@@ -33,10 +33,10 @@ let blueStartX = 20;
 let blueStartY = canvasHeight - blueHeight;
 let blueMoveX = 0;
 let blueMoveY = 0;
-let blueMoveUp = -5
-let blueMoveDown = +5
-let blueMoveRight = +5
-let blueMoveLeft = -5
+let blueMoveUp = -8
+let blueMoveDown = +8
+let blueMoveRight = +8
+let blueMoveLeft = -8
 
 // RESOURCE IMAGES
 const mapImg = new Image ();
@@ -59,6 +59,8 @@ let ballWidth = 60;
 let ballHeight = 60;
 let pigeonWidth = 80;
 let pigeonHeight = 80;
+let resourceMove = -10;
+
 
 const resourcesArr = [
   {img: mapImg, x: canvasWidth, y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
@@ -91,20 +93,29 @@ let trapWidth = 91;
 let trapHeight = 60;
 let sinkholeWidth = 150;
 let sinkholeHeight = 55;
+let dangerMove = -10;
+let startingX = canvasWidth + 300;
 
 const dangersArr = [
-  {img: rubbish1Img, x: canvasWidth + 100, y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
-  {img: rubbish2Img, x: canvasWidth + 300, y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
-  {img: poisonImg, x: canvasWidth + 500, y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
-  {img: trapImg, x: canvasWidth + 700, y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight},
-  {img: sinkholeImg, x: canvasWidth + 900, y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight}
+  {img: rubbish1Img, x: startingX, y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
+  {img: rubbish2Img, x: startingX * 1.5, y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
+  {img: poisonImg, x: startingX * 2, y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
+  {img: trapImg, x: startingX * 2.5, y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight},
+  {img: sinkholeImg, x: startingX * 3, y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight}
 ]
 
 const newOrderDangersArr = [];
 
 // GAME ID
 let gameId = 0;
+let isGameOver = false;
 
+// STRENGTH AND SCORE
+let strengthCounter = 0;
+const strength = document.querySelector(".strength-bar");
+let scoreCounter = 0;
+const score = document.querySelector(".score");
+const finalScore = document.querySelector(".final-score");
 
 window.onload = () => {
     
@@ -113,7 +124,6 @@ window.onload = () => {
         
         startGame();
     }
-
 
 function startGame() {
     splashScreen.style.display = "none"
@@ -125,13 +135,20 @@ function startGame() {
 }
 
 const animate = () => {
-  
 animateBackground();
-console.log(gameId)
 gameId = requestAnimationFrame(animate)
-if (gameId === 5000) {
-  cancelAnimationFrame(gameId)
+if (gameId % 100 === 0) {
+  scoreCounter += 1;
+  score.innerText = `Score: ${scoreCounter}`
 }
+if (isGameOver) {
+  finalScore.innerText = `Score: ${scoreCounter}`
+  cancelAnimationFrame(gameId)
+  splashScreen.style.display = "none"
+  gameplayScreen.style.display = "none"
+  gameoverScreen.style.display = "block"
+}
+
 };
 
 // ANIMATION FUNCTIONS
@@ -238,12 +255,23 @@ const moveCanvas5 = () => {
    const drawResource = () => {
     newOrderResourcesArr.forEach(resource => {
       ctx.drawImage(resource.img, resource.x, resource.y, resource.width, resource.height)
-      let resourceCurrentPosition = resource.x += -6;
+      let resourceCurrentPosition = resource.x += resourceMove;
       if (resourceCurrentPosition > 0) {
         resourceCurrentPosition
       } else {
-        resource.x = canvasWidth
+        resource.x = canvasWidth + 150
       }
+      if (resource.x < blueStartX + blueWidth - 30 &&
+          resource.x > blueStartX &&
+          resource.y > blueStartY - 30 &&
+          resource.y < blueStartY + blueHeight)
+       {resource.x = canvasWidth * 2
+        if (strengthCounter < 3) {
+          strengthCounter += 1;
+          strength.innerText = `Blue's Strength: ${strengthCounter}`;
+        }
+                
+      };
     })
     }
 
@@ -258,12 +286,22 @@ const moveCanvas5 = () => {
       const drawDanger = () => {
           newOrderDangersArr.forEach(danger => {
           ctx.drawImage(danger.img, danger.x, danger.y, danger.width, danger.height)
-           let dangerCurrentPosition = danger.x += -6;
+           let dangerCurrentPosition = danger.x += dangerMove;
           if (dangerCurrentPosition > 0) {
             dangerCurrentPosition
             } else {
-          danger.x = canvasWidth
+          danger.x = canvasWidth + 150
                 }
+          if (danger.x < blueStartX + blueWidth - 30 &&
+                  danger.x > blueStartX &&
+                  danger.y > blueStartY - 30 &&
+                  danger.y < blueStartY + blueHeight)
+              {strengthCounter -= 1;
+              if(strengthCounter <= 0) {
+                isGameOver = true;}
+                else{danger.x = canvasWidth * 2.5
+                strength.innerText = `Blue's Strength: ${strengthCounter}`}
+              };
               })
               }
 
@@ -293,4 +331,38 @@ const moveCanvas5 = () => {
 gameplayScreen.style.display = "none"
 gameoverScreen.style.display = "none"
 
+
+document.getElementById("restart-button").onclick = () => {
+backgroundImg1Start = 0;
+ backgroundImg2Start = canvasWidth;
+ backgroundImg3Start = canvasWidth * 2;
+ backgroundImg4Start = canvasWidth * 3;
+ backgroundImg5Start = canvasWidth * 4;
+ backgroundMove = -3;
+
+ blueStartX = 20;
+ blueStartY = canvasHeight - blueHeight;
+ blueMoveX = 0;
+ blueMoveY = 0;
+ blueMoveUp = -8
+ blueMoveDown = +8
+ blueMoveRight = +8
+ blueMoveLeft = -8
+
+resourceMove = -10;
+
+newOrderResourcesArr.splice(0, newOrderResourcesArr.length);
+
+dangerMove = -10;
+startingX = canvasWidth + 300;
+
+newOrderDangersArr.splice(0, newOrderDangersArr.length)
+
+ gameId = 0;
+ isGameOver = false;
+
+ strengthCounter = 0;
+ scoreCounter = 0;
+startGame();
+}
 }
