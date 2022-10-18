@@ -137,10 +137,6 @@ function startGame() {
 const animate = () => {
 animateBackground();
 gameId = requestAnimationFrame(animate)
-if (gameId % 100 === 0) {
-  scoreCounter += 1;
-  score.innerText = `Score: ${scoreCounter}`
-}
 if (gameId % 500 === 0 && resourceMove >= -8 && dangerMove >= -8) {
   resourceMove -= 0.5;
   dangerMove -= 0.5;
@@ -270,11 +266,14 @@ const moveCanvas5 = () => {
           resource.y > blueStartY - 30 &&
           resource.y < blueStartY + blueHeight)
        {resource.x = canvasWidth * 2
-        if (strengthCounter < 3) {
+        if ((resource.img === boneImg || resource.img === pigeonImg) && strengthCounter < 3) {
           strengthCounter += 1;
           strength.innerText = `Blue's Strength: ${strengthCounter}`;
         }
-                
+        else {
+          scoreCounter += 1;
+          score.innerText = `Score: ${scoreCounter}`;
+        }
       };
     })
     }
