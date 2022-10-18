@@ -3,7 +3,7 @@ A simple game built using HTML, CSS and JS based on canvas and DOM manipulation.
 Click here to see deployed game.
 
 ## Description
-A Dog's Quest for Home is a game where the player must help navigate Blue the dog from her life in an abandoned warehouse to a new cosy home with a loving family. She must traverse many landscapes, collecting resources and dodging dangers as she goes. Resources will help keep her strength up, but dangers will reduce it. The game ends when Blue's strength diminishes to zero and she has failed her quest and must begin again. 
+A Dog's Quest for Home is a game where the player must help navigate Blue the dog from her life in an abandoned warehouse to a new cosy home with a loving family. She must traverse many landscapes, collecting resources and dodging dangers as she goes. Resources will help keep her strength up, but dangers will reduce it. The game ends when Blue's strength diminishes to zero and she has failed her quest and must begin again. Certain resources will also allow the player to collect points.
 
 ## MVP (DOM - Canvas)
 # Splash 
@@ -14,33 +14,32 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 - Start button in shape of paw
 
 # Gameplay
-- Horizontally moving canvas flanked by static images of warehouse and house
+- Horizontally moving canvas
 - Blue is positioned near the start of the canvas and moves up, down, left and right using arrow keys
-- Strength bar which increases/decreases with objects
-- Score tally which increases every 1000 frames
-- Objects which appear from end of canvas and move along towards Blue and are collected using collision feature. Points are collected over time (every 1000 frames).
-- Simple background audio on loop
-- When bar diminishes game is over
+- Strength bar which increases/decreases with objects *
+- Score tally which increases with specific resources
+- Objects which appear from end of canvas and move along towards Blue and are collected using collision feature.
+- Simple background audio on loop *
+- When bar diminishes game is over *
 
 # Gameover
 - Failure message
 - Score printed
-- Restart button in shape of bone
+- Restart button in shape of bone *
 
 ## Backlog
 # Splash
-- Blue cartoon has simple animation (e.g. bobbing movement/ licks paw)
 - Additional key control (see gameplay)
 
 # Gameplay
 - Canvas images change to add sense of movement
-- Popup messages and SFX noises
-- Space or enter key must be hit to collect resources or they are lost. Not simple collision
-- Collision with side of screen loses point
-- When game is lost, Blue's position reverts to start of canvas and popup failure message appears
+- SFX noises *
+- Space or enter key must be hit to collect resources or they are lost. Not simple collision *
+- Collision with side of screen loses point *
+- When game is lost, Blue's position reverts to start of canvas and popup failure message appears *
 
 # Gameover
-- High score printed
+- High score printed *
 
 ## Data structure
 # main.js
@@ -94,7 +93,7 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 - create rubbish2
 - create poison
 - create sinkhole
-- create beartrap
+- create trap
 - check collision
 - reduce strength bar 
 
