@@ -59,19 +59,16 @@ let ballWidth = 60;
 let ballHeight = 60;
 let pigeonWidth = 80;
 let pigeonHeight = 80;
-let resourcesMove = -5;
-let resourcesStartX = canvasWidth - 100;
-let resourcesStartY = 500;
 
 const resourcesArr = [
-  {img: mapImg, x: resourcesStartX, y: resourcesStartY, width: mapWidth, height: mapHeight},
-  {img: compassImg, x: resourcesStartX, y: resourcesStartY, width: compassWidth, height: compassHeight},
-  {img: boneImg, x: resourcesStartX, y: resourcesStartY, width: boneWidth, height: boneHeight},
-  {img: ballImg, x: resourcesStartX, y: resourcesStartY, width: ballWidth, height: ballHeight},
-  {img: pigeonImg, x: resourcesStartX, y: resourcesStartY, width: pigeonWidth, height: pigeonHeight},
+  {img: mapImg, x: canvasWidth, y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
+  {img: compassImg, x: canvasWidth * 1.5, y: Math.floor(Math.random() * ((canvasHeight - compassHeight) - 0 + 1) + 0), width: compassWidth, height: compassHeight},
+  {img: boneImg, x: canvasWidth * 2, y: Math.floor(Math.random() * ((canvasHeight - boneHeight) - 0 + 1) + 0), width: boneWidth, height: boneHeight},
+  {img: ballImg, x: canvasWidth * 2.5, y: Math.floor(Math.random() * ((canvasHeight - ballHeight) - 0 + 1) + 0), width: ballWidth, height: ballHeight},
+  {img: pigeonImg, x: canvasWidth * 3, y: Math.floor(Math.random() * ((canvasHeight - pigeonHeight) - 0 + 1) + 0), width: pigeonWidth, height: pigeonHeight},
 ]
 
-const selectedResourcesArr = [];
+const newOrderResourcesArr = [];
 
 // DANGERS IMAGES
 const rubbish1Img = new Image ();
@@ -96,12 +93,14 @@ let sinkholeWidth = 150;
 let sinkholeHeight = 55;
 
 const dangersArr = [
-  {img: rubbish1Img, x: 700, y: 500, width: rubbish1Width, height: rubbish1Height},
-  {img: rubbish2Img, x: 700, y: 500, width: rubbish2Width, height: rubbish2Height},
-  {img: poisonImg, x: 700, y: 500, width: poisonWidth, height: poisonHeight},
-  {img: trapImg, x: 700, y: 500, width: trapWidth, height: trapHeight},
-  {img: sinkholeImg, x: 700, y: 500, width: sinkholeWidth, height: sinkholeHeight}
+  {img: rubbish1Img, x: canvasWidth + 100, y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
+  {img: rubbish2Img, x: canvasWidth + 300, y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
+  {img: poisonImg, x: canvasWidth + 500, y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
+  {img: trapImg, x: canvasWidth + 700, y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight},
+  {img: sinkholeImg, x: canvasWidth + 900, y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight}
 ]
+
+const newOrderDangersArr = [];
 
 // GAME ID
 let gameId = 0;
@@ -120,11 +119,13 @@ function startGame() {
     splashScreen.style.display = "none"
     gameplayScreen.style.display = "block"
     gameoverScreen.style.display = "none"
+    shuffleResources(resourcesArr);
+    shuffleDangers(dangersArr);
     animate();    
 }
 
 const animate = () => {
-clearCanvas();
+  
 animateBackground();
 console.log(gameId)
 gameId = requestAnimationFrame(animate)
@@ -149,13 +150,8 @@ const animateBackground = () => {
   drawBlue();
   moveBlueXAxis();
   moveBlueYAxis();
-  if (gameId % 100 === 0) {
-    selectRandomResource()
-  };
-
   drawResource();
-
-  moveResource();
+  drawDanger();
   };
 
 const clearCanvas = () => {ctx.clearRect(0, 0, canvasWidth, canvasHeight)};
@@ -232,20 +228,44 @@ const moveCanvas5 = () => {
               blueStartY += blueMoveY;
             }
 
-    const selectRandomResource = () => {
-              let randomNumGen = Math.floor(Math.random() * ((resourcesArr.length - 1) - 0 + 1) + 0);
-              let randomResource = resourcesArr[randomNumGen];
-              selectedResourcesArr.push(randomResource)};
+    const shuffleResources = (array) => {
+      const shuffledResourcesArr = resourcesArr.sort((a, b) => 0.5 - Math.random());
+      shuffledResourcesArr.forEach(resource => {
+        newOrderResourcesArr.push(resource)
+              });
+            };
 
-    const drawResource = () => {
-      let indexToSelect = selectedResourcesArr.length - 1;
-      let selectedResource = selectedResourcesArr[indexToSelect];
-                ctx.drawImage(selectedResource.img, selectedResource.x, selectedResource.y, selectedResource.width, selectedResource.height)
-              }
-              
-    const moveResource = () => {
-      resourcesStartX += resourcesMove;
+   const drawResource = () => {
+    newOrderResourcesArr.forEach(resource => {
+      ctx.drawImage(resource.img, resource.x, resource.y, resource.width, resource.height)
+      let resourceCurrentPosition = resource.x += -6;
+      if (resourceCurrentPosition > 0) {
+        resourceCurrentPosition
+      } else {
+        resource.x = canvasWidth
+      }
+    })
     }
+
+
+    const shuffleDangers = (array) => {
+      const shuffledDangersArr = dangersArr.sort((a, b) => 0.5 - Math.random());
+      shuffledDangersArr.forEach(danger => {
+        newOrderDangersArr.push(danger)
+              });
+            };
+
+      const drawDanger = () => {
+          newOrderDangersArr.forEach(danger => {
+          ctx.drawImage(danger.img, danger.x, danger.y, danger.width, danger.height)
+           let dangerCurrentPosition = danger.x += -6;
+          if (dangerCurrentPosition > 0) {
+            dangerCurrentPosition
+            } else {
+          danger.x = canvasWidth
+                }
+              })
+              }
 
             document.addEventListener("keydown", event => {
               if(event.key === "ArrowUp") {
