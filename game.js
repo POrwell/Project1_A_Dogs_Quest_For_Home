@@ -59,7 +59,7 @@ let ballWidth = 60;
 let ballHeight = 60;
 let pigeonWidth = 80;
 let pigeonHeight = 80;
-let resourceMove = -10;
+let resourceMove = -5;
 
 
 const resourcesArr = [
@@ -93,7 +93,7 @@ let trapWidth = 91;
 let trapHeight = 60;
 let sinkholeWidth = 150;
 let sinkholeHeight = 55;
-let dangerMove = -10;
+let dangerMove = -5;
 let startingX = canvasWidth + 300;
 
 const dangersArr = [
@@ -140,6 +140,10 @@ gameId = requestAnimationFrame(animate)
 if (gameId % 100 === 0) {
   scoreCounter += 1;
   score.innerText = `Score: ${scoreCounter}`
+}
+if (gameId % 500 === 0 && resourceMove >= -8 && dangerMove >= -8) {
+  resourceMove -= 0.5;
+  dangerMove -= 0.5;
 }
 if (isGameOver) {
   finalScore.innerText = `Score: ${scoreCounter}`
@@ -296,7 +300,7 @@ const moveCanvas5 = () => {
                   danger.x > blueStartX &&
                   danger.y > blueStartY - 30 &&
                   danger.y < blueStartY + blueHeight)
-              {strengthCounter -= 1;
+              {strengthCounter -= 2;
               if(strengthCounter <= 0) {
                 isGameOver = true;}
                 else{danger.x = canvasWidth * 2.5
@@ -349,11 +353,11 @@ backgroundImg1Start = 0;
  blueMoveRight = +8
  blueMoveLeft = -8
 
-resourceMove = -10;
+resourceMove = -5;
 
 newOrderResourcesArr.splice(0, newOrderResourcesArr.length);
 
-dangerMove = -10;
+dangerMove = -5;
 startingX = canvasWidth + 300;
 
 newOrderDangersArr.splice(0, newOrderDangersArr.length)
