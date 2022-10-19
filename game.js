@@ -4,6 +4,10 @@ const gameoverScreen = document.getElementById("gameover-screen");
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
+// AUDIO
+const backgroundMusic = new Audio("./sound/background-song.wav");
+backgroundMusic.volume = 0.2;
+
 // BACKGROUND IMAGES
 const backgroundImg1 = new Image();
 backgroundImg1.src = "./images/canvas-1.jpg"
@@ -60,17 +64,18 @@ let ballHeight = 60;
 let pigeonWidth = 80;
 let pigeonHeight = 80;
 let resourceMove = -4;
+let startingXRes = canvasWidth
 
 
 const resourcesArr = [
-  {img: mapImg, x: canvasWidth, y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
-  {img: compassImg, x: canvasWidth * 1.5, y: Math.floor(Math.random() * ((canvasHeight - compassHeight) - 0 + 1) + 0), width: compassWidth, height: compassHeight},
-  {img: boneImg, x: canvasWidth * 2, y: Math.floor(Math.random() * ((canvasHeight - boneHeight) - 0 + 1) + 0), width: boneWidth, height: boneHeight},
-  {img: ballImg, x: canvasWidth * 2.5, y: Math.floor(Math.random() * ((canvasHeight - ballHeight) - 0 + 1) + 0), width: ballWidth, height: ballHeight},
-  {img: pigeonImg, x: canvasWidth * 3, y: Math.floor(Math.random() * ((canvasHeight - pigeonHeight) - 0 + 1) + 0), width: pigeonWidth, height: pigeonHeight},
+  {img: mapImg, x: startingXRes, y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
+  {img: compassImg, x: startingXRes * 1.5, y: Math.floor(Math.random() * ((canvasHeight - compassHeight) - 0 + 1) + 0), width: compassWidth, height: compassHeight},
+  {img: boneImg, x: startingXRes * 2, y: Math.floor(Math.random() * ((canvasHeight - boneHeight) - 0 + 1) + 0), width: boneWidth, height: boneHeight},
+  {img: ballImg, x: startingXRes * 2.5, y: Math.floor(Math.random() * ((canvasHeight - ballHeight) - 0 + 1) + 0), width: ballWidth, height: ballHeight},
+  {img: pigeonImg, x: startingXRes * 3, y: Math.floor(Math.random() * ((canvasHeight - pigeonHeight) - 0 + 1) + 0), width: pigeonWidth, height: pigeonHeight},
 ]
 
-const newOrderResourcesArr = [];
+let newOrderResourcesArr = [];
 
 // DANGERS IMAGES
 const rubbish1Img = new Image ();
@@ -101,39 +106,44 @@ const dangersArr = [
   {img: rubbish2Img, x: startingX * 1.5, y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
   {img: poisonImg, x: startingX * 2, y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
   {img: trapImg, x: startingX * 2.5, y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight},
-  {img: sinkholeImg, x: startingX * 3, y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight}
+  {img: sinkholeImg, x: startingX * 3, y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight},
+  {img: rubbish1Img, x: startingX *2.25, y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
+  {img: sinkholeImg, x: startingX * 3.25, y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight},
+  {img: poisonImg, x: startingX * 0.5, y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
+  {img: rubbish2Img, x: startingX * 1.25, y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
+  {img: trapImg, x: startingX * 3, y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight}
 ]
 
-const newOrderDangersArr = [];
+let newOrderDangersArr = [];
 
 // GAME ID
 let gameId = 0;
 let isGameOver = false;
 
 // STRENGTH AND SCORE
-let strengthCounter = 0;
 const strength = document.querySelector(".strength-bar");
-let scoreCounter = 0;
+const strengthHearts = document.querySelector(".strength-bar-img")
+let strengthCounter = 0;
+
 const score = document.querySelector(".score");
 const scoreNumber = document.querySelector(".score span");
-console.log(scoreNumber)
 const finalScore = document.querySelector(".final-score");
-const strengthHearts = document.querySelector(".strength-bar-img")
+let scoreCounter = 0;
 
+//ON LOAD
 window.onload = () => {
-    
-   
-    document.getElementById("start-button").onclick = () => {
-        
-        startGame();
-    }
 
-function startGame() {
+ //START BUTTON  
+document.getElementById("start-button").onclick = () => {
+  backgroundMusic.play();
+  startGame() }
+
+const startGame = () => {
     splashScreen.style.display = "none"
     gameplayScreen.style.display = "block"
     gameoverScreen.style.display = "none"
     shuffleResources(resourcesArr);
-    shuffleDangers(dangersArr);
+    shuffleDangers(dangersArr); 
     animate();    
 }
 
@@ -174,9 +184,9 @@ const animateBackground = () => {
   drawDanger();
   };
 
+  // CANVAS FUNCTIONS
 const clearCanvas = () => {ctx.clearRect(0, 0, canvasWidth, canvasHeight)};
 const drawCanvas = () => {ctx.drawImage(backgroundImg1, backgroundImg1Start, 0, canvasWidth, canvasHeight)};
-
 const moveCanvas = () => {
     let backgroundCurrentPosition = backgroundImg1Start += backgroundMove;
     if (backgroundImg1Start >= -canvasWidth) {
@@ -186,9 +196,7 @@ const moveCanvas = () => {
       backgroundImg1Start = canvasWidth * 4;
     }
     };
-
 const drawCanvas2 = () => {ctx.drawImage(backgroundImg2, backgroundImg2Start, 0, canvasWidth, canvasHeight)}
-
 const moveCanvas2 = () => {
         let backgroundCurrentPosition2 = backgroundImg2Start += backgroundMove;
         if (backgroundImg2Start >= -canvasWidth) {
@@ -198,9 +206,7 @@ const moveCanvas2 = () => {
           backgroundImg2Start = canvasWidth * 4;
         }
         };
-
 const drawCanvas3 = () => {ctx.drawImage(backgroundImg3, backgroundImg3Start, 0, canvasWidth, canvasHeight)};
-
 const moveCanvas3 = () => {
         let backgroundCurrentPosition = backgroundImg3Start += backgroundMove;
         if (backgroundImg3Start >= -canvasWidth) {
@@ -210,9 +216,7 @@ const moveCanvas3 = () => {
           backgroundImg3Start = canvasWidth * 4;
         }
         };
-
 const drawCanvas4 = () => {ctx.drawImage(backgroundImg4, backgroundImg4Start, 0, canvasWidth, canvasHeight)};
-
 const moveCanvas4 = () => {
           let backgroundCurrentPosition = backgroundImg4Start += backgroundMove;
           if (backgroundImg4Start >= -canvasWidth) {
@@ -222,9 +226,7 @@ const moveCanvas4 = () => {
             backgroundImg4Start = canvasWidth * 4;
           }
           };
-
 const drawCanvas5 = () => {ctx.drawImage(backgroundImg5, backgroundImg5Start, 0, canvasWidth, canvasHeight)};
-
 const moveCanvas5 = () => {
             let backgroundCurrentPosition = backgroundImg5Start += backgroundMove;
             if (backgroundImg5Start >= -canvasWidth) {
@@ -243,17 +245,24 @@ const moveCanvas5 = () => {
               }
             }
 
+  // BLUE FUNCTIONS
     const moveBlueYAxis = () => {
               if (blueStartY + blueMoveY >= 0 && blueStartY + blueMoveY <= canvasHeight-blueHeight)
               blueStartY += blueMoveY;
             }
 
+  // RESOURCE FUNCTIONS
     const shuffleResources = (array) => {
-      const shuffledResourcesArr = resourcesArr.sort((a, b) => 0.5 - Math.random());
+      let resourcesArrCopy = [];
+      for (let i = 0; i < array.length; i ++) {
+        const arrElement = array[i];
+resourcesArrCopy.push(arrElement);
+      }
+      const shuffledResourcesArr = resourcesArrCopy.sort((a, b) => 0.5 - Math.random());
       shuffledResourcesArr.forEach(resource => {
         newOrderResourcesArr.push(resource)
               });
-            };
+            }; 
 
    const drawResource = () => {
     newOrderResourcesArr.forEach(resource => {
@@ -289,13 +298,18 @@ const moveCanvas5 = () => {
     })
     }
 
-
+// DANGER FUNCTIONS
     const shuffleDangers = (array) => {
-      const shuffledDangersArr = dangersArr.sort((a, b) => 0.5 - Math.random());
+      let dangersArrCopy = [];
+      for (let i = 0; i < array.length; i ++) {
+        const arrElement = array[i];
+dangersArrCopy.push(arrElement);
+      }
+      const shuffledDangersArr = dangersArrCopy.sort((a, b) => 0.5 - Math.random());
       shuffledDangersArr.forEach(danger => {
         newOrderDangersArr.push(danger)
               });
-            };
+            }; 
 
       const drawDanger = () => {
           newOrderDangersArr.forEach(danger => {
@@ -311,10 +325,11 @@ const moveCanvas5 = () => {
                   danger.y > blueStartY - 30 &&
                   danger.y < blueStartY + blueHeight)
               {strengthCounter -= 2;
-              if(strengthCounter <= 0) {
-                isGameOver = true;}
+              if(strengthCounter < 0) {
+                danger.x = canvasWidth * 2.5
+                isGameOver = true;
+              }
                 else{danger.x = canvasWidth * 2.5
-                  
                   if(strengthCounter === 3) {
                   strengthHearts.setAttribute("src", "./images/full-strength.png") }
                   else if (strengthCounter === 2) {
@@ -328,6 +343,7 @@ const moveCanvas5 = () => {
               })
               }
 
+// EVENT LISTENERS
             document.addEventListener("keydown", event => {
               if(event.key === "ArrowUp") {
                 blueMoveY = blueMoveUp;
@@ -347,45 +363,48 @@ const moveCanvas5 = () => {
               blueMoveY = 0;
             })
 
-
-
-
+            backgroundMusic.addEventListener("ended", event => {
+              backgroundMusic.play();
+            })
 
 gameplayScreen.style.display = "none"
 gameoverScreen.style.display = "none"
 
-
+// RESTART BUTTON
 document.getElementById("restart-button").onclick = () => {
-backgroundImg1Start = 0;
- backgroundImg2Start = canvasWidth;
- backgroundImg3Start = canvasWidth * 2;
- backgroundImg4Start = canvasWidth * 3;
- backgroundImg5Start = canvasWidth * 4;
- backgroundMove = -3;
+  console.log("Hi")
+  clearCanvas();
+  backgroundImg1Start = 0;
+  backgroundImg2Start = canvasWidth;
+  backgroundImg3Start = canvasWidth * 2;
+  backgroundImg4Start = canvasWidth * 3;
+  backgroundImg5Start = canvasWidth * 4;
+  backgroundMove = -3;
+  blueStartX = 20;
+  blueStartY = canvasHeight - blueHeight;
+  blueMoveX = 0;
+  blueMoveY = 0;
+  blueMoveUp = -8
+  blueMoveDown = +8
+  blueMoveRight = +8
+  blueMoveLeft = -8
+  resourceMove = -4;
+  startingXRes = canvasWidth;
+  dangerMove = -4;
+  startingX = canvasWidth + 300;
+  
+  newOrderResourcesArr = [];
+  resourcesArrCopy = [];
+  newOrderDangersArr = [];
+  dangersArrCopy = [];
 
- blueStartX = 20;
- blueStartY = canvasHeight - blueHeight;
- blueMoveX = 0;
- blueMoveY = 0;
- blueMoveUp = -8
- blueMoveDown = +8
- blueMoveRight = +8
- blueMoveLeft = -8
-
-resourceMove = -4;
-
-newOrderResourcesArr.splice(0, newOrderResourcesArr.length);
-
-dangerMove = -4;
-startingX = canvasWidth + 300;
-
-newOrderDangersArr.splice(0, newOrderDangersArr.length)
-
- gameId = 0;
- isGameOver = false;
-
- strengthCounter = 0;
- scoreCounter = 0;
-startGame();
+  gameId = 0;
+  isGameOver = false;
+  
+  strengthCounter = 0;
+  scoreCounter = 0;
+  scoreNumber.innerText = 0;
+  strengthHearts.setAttribute("src", "./images/zero-strength.png");
+  startGame();
 }
 }
