@@ -59,7 +59,7 @@ let ballWidth = 60;
 let ballHeight = 60;
 let pigeonWidth = 80;
 let pigeonHeight = 80;
-let resourceMove = -5;
+let resourceMove = -4;
 
 
 const resourcesArr = [
@@ -93,7 +93,7 @@ let trapWidth = 91;
 let trapHeight = 60;
 let sinkholeWidth = 150;
 let sinkholeHeight = 55;
-let dangerMove = -5;
+let dangerMove = -4;
 let startingX = canvasWidth + 300;
 
 const dangersArr = [
@@ -115,7 +115,10 @@ let strengthCounter = 0;
 const strength = document.querySelector(".strength-bar");
 let scoreCounter = 0;
 const score = document.querySelector(".score");
+const scoreNumber = document.querySelector(".score span");
+console.log(scoreNumber)
 const finalScore = document.querySelector(".final-score");
+const strengthHearts = document.querySelector(".strength-bar-img")
 
 window.onload = () => {
     
@@ -268,11 +271,19 @@ const moveCanvas5 = () => {
        {resource.x = canvasWidth * 2
         if ((resource.img === boneImg || resource.img === pigeonImg) && strengthCounter < 3) {
           strengthCounter += 1;
-          strength.innerText = `Blue's Strength: ${strengthCounter}`;
+          if(strengthCounter === 3) {
+          strengthHearts.setAttribute("src", "./images/full-strength.png") }
+          else if (strengthCounter === 2) {
+            strengthHearts.setAttribute("src", "./images/medium-strength.png")
+          }
+          else if (strengthCounter === 1) {
+            strengthHearts.setAttribute("src", "./images/low-strength.png")
+          }
         }
         else {
           scoreCounter += 1;
-          score.innerText = `Score: ${scoreCounter}`;
+          scoreNumber.setAttribute("style", "font-size: 45px")
+          scoreNumber.innerText = `${scoreCounter}`;
         }
       };
     })
@@ -303,7 +314,16 @@ const moveCanvas5 = () => {
               if(strengthCounter <= 0) {
                 isGameOver = true;}
                 else{danger.x = canvasWidth * 2.5
-                strength.innerText = `Blue's Strength: ${strengthCounter}`}
+                  
+                  if(strengthCounter === 3) {
+                  strengthHearts.setAttribute("src", "./images/full-strength.png") }
+                  else if (strengthCounter === 2) {
+                    strengthHearts.setAttribute("src", "./images/medium-strength.png")
+                  }
+                  else if (strengthCounter === 1) {
+                    strengthHearts.setAttribute("src", "./images/low-strength.png")
+                  }
+                }
               };
               })
               }
@@ -352,11 +372,11 @@ backgroundImg1Start = 0;
  blueMoveRight = +8
  blueMoveLeft = -8
 
-resourceMove = -5;
+resourceMove = -4;
 
 newOrderResourcesArr.splice(0, newOrderResourcesArr.length);
 
-dangerMove = -5;
+dangerMove = -4;
 startingX = canvasWidth + 300;
 
 newOrderDangersArr.splice(0, newOrderDangersArr.length)

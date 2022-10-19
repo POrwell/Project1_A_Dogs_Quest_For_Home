@@ -23,7 +23,7 @@
         but be sure to dodge any danger as you go, or she may lose too much strength and have to begin her quest again!
         </p>
     </div>
-    <div>
+    <div class = "controls">
     <ul>
         <li>move Blue around using the arrow keys</li>
         <li>collect resources using Enter to build strength and win points</li> <!--DELETE IF NOT MANAGED!-->
@@ -31,25 +31,28 @@
     </ul>
     <div>
         <img class="keyboard-img" src="./images/keyboard (1).png">
-        <img class="enter-img" src="./images/enter.png">
+        <!--<img class="enter-img" src="./images/enter.png"> -->
     </div>
 </div>
-    <button>
-        <div id = "start-button">
-        <img src="./images/paw_adobe_express.svg" class="button-img">
-        </div>
+    <button id = "start-button">
+        <img src="./images/paw-5.png" class="button-img">
     </button>
 </div>
 <div class = "footer">
-    <img src="./images/Blue-startscreen.svg" alt="cartoon dog" class="opening-img">
+    <div class = "opening-img-ctr">
+    <img src="./images/Blue-opening.png" alt="cartoon dog" class="opening-img">
+</div>
 </div>
 </div>
 
 <!--GAMEPLAY SCREEN-->
 <div id = "gameplay-screen">
     <div class="status">
-        <article class="strength-bar">Blue's Strength: 0 </article>
-        <article class="score">Score: 0</article>
+        <article class="strength-bar">
+            <p class="strength-title">Strength: </p>
+        <img src="./images/zero-strength.png" class ="strength-bar-img">
+        </article>
+        <article class="score">Score -    <span style = "font-size: 35px">0</span></article>
     </div>
 <div class = game-board>
     <canvas id="canvas" width="1920" height="800"></canvas>
