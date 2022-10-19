@@ -133,6 +133,8 @@ const scoreNumber = document.querySelector(".score span");
 const finalScore = document.querySelector(".final-score");
 let scoreCounter = 0;
 
+
+
 //ON LOAD
 window.onload = () => {
 
@@ -348,6 +350,19 @@ dangersArrCopy.push(arrElement);
               };
               })
               }
+
+
+// GAMEOVER MESSAGES
+const gameoverMsg = document.querySelector(".message");
+if (finalScore <= 15) {
+  gameoverMsg.innerText = "A bit of a paw effort!"
+}
+else if (finalScore <= 30 && finalScore > 15) {
+  gameoverMsg.innerText = "You are terrwoofic!"
+}
+else if (finalScore <= 45 && finalScore > 30) {
+  gameoverMsg.innerText = "Home is just around the corner!"
+}
 
 // EVENT LISTENERS
             document.addEventListener("keydown", event => {

@@ -16,26 +16,25 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 # Gameplay
 - Horizontally moving canvas
 - Blue is positioned near the start of the canvas and moves up, down, left and right using arrow keys
-- Strength bar which increases/decreases with objects *
+- Strength bar which increases/decreases with objects
 - Score tally which increases with specific resources
 - Objects which appear from end of canvas and move along towards Blue and are collected using collision feature.
-- Simple background audio on loop *
-- When bar diminishes game is over *
+- Simple background audio on loop 
+- When bar diminishes game is over 
 
 # Gameover
 - Failure message
 - Score printed
-- Restart button in shape of bone *
+- Restart button in shape of bone 
 
 ## Backlog
 # Splash
-- Additional key control (see gameplay)
+- Additional key control (see gameplay) *
 
 # Gameplay
 - Canvas images change to add sense of movement
 - SFX noises *
 - Space or enter key must be hit to collect resources or they are lost. Not simple collision *
-- Collision with side of screen loses point *
 - When game is lost, Blue's position reverts to start of canvas and popup failure message appears *
 
 # Gameover
@@ -113,27 +112,27 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 - Gameover
 
 ## Task
-- main - build splash screen
-- main - build gameplay screen
-- main - build gameover screen
-- game - build Canvas
-- game - start animation loop
-- game - update Canvas
-- game - draw Canvas
-- game - update Blue
-- game - move Blue
-- game - create resources
-- game - create dangers
-- game - fire random resource
-- game - fire random danger
-- game - create strength bar
-- game - update stength bar
-- game - create score
-- game - update score
-- game - check collision
-- game - game over
-- game - event listener arrow keys
-- game - add audio
+[x] main - build splash screen
+[x] main - build gameplay screen
+[x] main - build gameover screen
+[x] game - build Canvas
+[x] game - start animation loop
+[x] game - update Canvas
+[x] game - draw Canvas
+[x] game - update Blue
+[x] game - move Blue
+[x] game - create resources
+[x] game - create dangers
+[x] game - fire random resource
+[x] game - fire random danger
+[x] game - create strength bar
+[x] game - update stength bar
+[x] game - create score
+[x] game - update score
+[x] game - check collision
+[x] game - game over
+[x] game - event listener arrow keys
+[x] game - add audio
 
 ## Links
 Trello - https://trello.com/b/uw0SVOy2/tasks
