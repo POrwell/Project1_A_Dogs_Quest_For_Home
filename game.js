@@ -5,8 +5,11 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
 // AUDIO
-const backgroundMusic = new Audio("./sound/background-song.wav");
+const backgroundMusic = new Audio("./sound/background-song.mp3");
 backgroundMusic.volume = 0.2;
+
+const gameoverMusic = new Audio("./sound/gameover-song.mp3");
+gameoverMusic.volume = 0.2;
 
 // BACKGROUND IMAGES
 const backgroundImg1 = new Image();
@@ -142,6 +145,7 @@ const startGame = () => {
     splashScreen.style.display = "none"
     gameplayScreen.style.display = "block"
     gameoverScreen.style.display = "none"
+    backgroundMusic.play();
     shuffleResources(resourcesArr);
     shuffleDangers(dangersArr); 
     animate();    
@@ -157,6 +161,8 @@ if (gameId % 500 === 0 && resourceMove >= -8 && dangerMove >= -8) {
 if (isGameOver) {
   finalScore.innerText = `Score: ${scoreCounter}`
   cancelAnimationFrame(gameId)
+  backgroundMusic.pause();
+  gameoverMusic.play();
   splashScreen.style.display = "none"
   gameplayScreen.style.display = "none"
   gameoverScreen.style.display = "block"
@@ -367,12 +373,16 @@ dangersArrCopy.push(arrElement);
               backgroundMusic.play();
             })
 
+            gameoverMusic.addEventListener("ended", event => {
+              gameoverMusic.play();
+            })
+
 gameplayScreen.style.display = "none"
 gameoverScreen.style.display = "none"
 
 // RESTART BUTTON
 document.getElementById("restart-button").onclick = () => {
-  console.log("Hi")
+  gameoverMusic.pause();
   clearCanvas();
   backgroundImg1Start = 0;
   backgroundImg2Start = canvasWidth;
