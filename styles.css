@@ -39,8 +39,6 @@ h1 {
     color: black;
 }
 
-
-
 .instructions {
     display: flex;
     flex-direction: column;
@@ -151,8 +149,6 @@ flex-direction: row;
 .gameover-screen {
     background-color: aqua;
 }
-
-
 
 #gameover-screen {
     background-image: url("./images/canvas-1.jpg");

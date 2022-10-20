@@ -159,7 +159,6 @@ const startGame = () => {
 }
 
 const animate = () => {
-  
 animateBackground();
 gameId = requestAnimationFrame(animate)
 if (gameId % 500 === 0 && resourceMove >= -5 && dangerMove >= -5) {
@@ -216,7 +215,6 @@ const animateBackground = () => {
   drawResource();         
   drawDanger();
   };
-
 
   // CANVAS FUNCTIONS
 const clearCanvas = () => {ctx.clearRect(0, 0, canvasWidth, canvasHeight)};
@@ -286,7 +284,6 @@ const moveCanvas5 = () => {
             }
 
   // RESOURCE FUNCTIONS
-
    const drawResource = () => {
     resourcesArr.forEach(resource => {
       ctx.drawImage(resource.img, resource.x, resource.y, resource.width, resource.height)
@@ -327,7 +324,6 @@ const moveCanvas5 = () => {
     }
 
 // DANGER FUNCTIONS
-
       const drawDanger = () => {
           dangersArr.forEach(danger => {
           ctx.drawImage(danger.img, danger.x, danger.y, danger.width, danger.height)
@@ -438,6 +434,7 @@ document.getElementById("restart-button").onclick = () => {
   scoreNumber.innerText = 0;
   strengthHearts.setAttribute("src", "./images/zero-strength.png");
   gameoverMsg.innerText = "";
+  
   startGame();
 }
 }
