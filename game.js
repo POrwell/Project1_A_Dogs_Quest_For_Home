@@ -125,6 +125,8 @@ const score = document.querySelector(".score");
 const scoreNumber = document.querySelector(".score span");
 const finalScore = document.querySelector(".final-score");
 let scoreCounter = 0;
+const highScore = document.querySelector(".high-score");
+let highScoreCounter = 0;
 
 const gameoverMsg = document.querySelector(".message");
 
@@ -157,6 +159,10 @@ if(gameId >= 50000) {
 }
 if (isGameOver) {
   finalScore.innerText = `Score: ${scoreCounter}`
+  if(scoreCounter > highScoreCounter) {
+    highScoreCounter = scoreCounter
+  }
+  highScore.innerText = `High Score: ${highScoreCounter}`
 
   // GAMEOVER MESSAGES
   if (scoreCounter >= 0 && scoreCounter <= 5) {

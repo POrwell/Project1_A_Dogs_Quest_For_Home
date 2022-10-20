@@ -29,12 +29,11 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 
 ## Backlog
 # Splash
-- Additional key control (see gameplay) *
+
 
 # Gameplay
 - Canvas images change to add sense of movement
 - SFX noises *
-- Space or enter key must be hit to collect resources or they are lost. Not simple collision *
 
 # Gameover
 - High score printed *

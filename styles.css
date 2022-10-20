@@ -181,14 +181,14 @@ flex-direction: row;
 }
 
 .final-score {
-    color: #ffd700;
+    color: silver;
     text-align: center;
     font-weight: bold;
     font-size: 80px;
 }
 
 .high-score {
-    color: #ffd700;
+    color: orange;
     text-align: center;
     font-weight: bold;
     font-size: 80px;
