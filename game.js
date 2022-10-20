@@ -66,14 +66,14 @@ let ballWidth = 60;
 let ballHeight = 60;
 let pigeonWidth = 80;
 let pigeonHeight = 80;
-let resourceMove = -4;
+let resourceMove = -3.5;
 
 let resourcesArr = [
-  {img: mapImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
-  {img: compassImg, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - compassHeight) - 0 + 1) + 0), width: compassWidth, height: compassHeight},
-  {img: boneImg, x: Math.floor(Math.random() * ((canvasWidth * 2) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - boneHeight) - 0 + 1) + 0), width: boneWidth, height: boneHeight},
-  {img: ballImg, x: Math.floor(Math.random() * ((canvasWidth * 2.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - ballHeight) - 0 + 1) + 0), width: ballWidth, height: ballHeight},
-  {img: pigeonImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - pigeonHeight) - 0 + 1) + 0), width: pigeonWidth, height: pigeonHeight},
+  {img: mapImg, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
+  {img: compassImg, x: Math.floor(Math.random() * ((canvasWidth * 1.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - compassHeight) - 0 + 1) + 0), width: compassWidth, height: compassHeight},
+  {img: boneImg, x: Math.floor(Math.random() * ((canvasWidth * 1) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - boneHeight) - 0 + 1) + 0), width: boneWidth, height: boneHeight},
+  {img: ballImg, x: Math.floor(Math.random() * ((canvasWidth * 1.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - ballHeight) - 0 + 1) + 0), width: ballWidth, height: ballHeight},
+  {img: pigeonImg, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - pigeonHeight) - 0 + 1) + 0), width: pigeonWidth, height: pigeonHeight},
 ]
 
 // DANGERS IMAGES
@@ -97,7 +97,7 @@ let trapWidth = 91;
 let trapHeight = 60;
 let sinkholeWidth = 150;
 let sinkholeHeight = 55;
-let dangerMove = -4;
+let dangerMove = -3.5;
 
 let dangersArr = [
   {img: rubbish1Img, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
@@ -145,11 +145,15 @@ const startGame = () => {
 }
 
 const animate = () => {
+  
 animateBackground();
 gameId = requestAnimationFrame(animate)
-if (gameId % 500 === 0 && resourceMove >= -6 && dangerMove >= -6) {
-  resourceMove -= 0.5;
-  dangerMove -= 0.5;
+if (gameId % 500 === 0 && resourceMove >= -5 && dangerMove >= -5) {
+  resourceMove -= 0.25;
+  dangerMove -= 0.25;
+}
+if(gameId >= 50000) {
+  cancelAnimationFrame(gameId)
 }
 if (isGameOver) {
   finalScore.innerText = `Score: ${scoreCounter}`
@@ -167,7 +171,6 @@ if (isGameOver) {
   }
   clearCanvas();
   cancelAnimationFrame(gameId)
- 
   backgroundMusic.pause();
   gameoverMusic.play();
   splashScreen.style.display = "none"
@@ -380,7 +383,7 @@ document.getElementById("restart-button").onclick = () => {
   blueMoveDown = +8
   blueMoveRight = +8
   blueMoveLeft = -8
-  resourceMove = -4;
+  resourceMove = -3.5;
   resourcesArr = [
     {img: mapImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
     {img: compassImg, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - compassHeight) - 0 + 1) + 0), width: compassWidth, height: compassHeight},
@@ -388,7 +391,7 @@ document.getElementById("restart-button").onclick = () => {
     {img: ballImg, x: Math.floor(Math.random() * ((canvasWidth * 2.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - ballHeight) - 0 + 1) + 0), width: ballWidth, height: ballHeight},
     {img: pigeonImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - pigeonHeight) - 0 + 1) + 0), width: pigeonWidth, height: pigeonHeight},
   ]
-  dangerMove = -4;
+  dangerMove = -3.5;
   dangersArr = [
     {img: rubbish1Img, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
     {img: rubbish2Img, x: Math.floor(Math.random() * ((canvasWidth * 2.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
@@ -402,7 +405,6 @@ document.getElementById("restart-button").onclick = () => {
     {img: rubbish2Img, x: Math.floor(Math.random() * ((canvasWidth * 1.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height}
   ]
 
-  gameId = 0;
   isGameOver = false;
   
   strengthCounter = 0;

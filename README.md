@@ -35,7 +35,6 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 - Canvas images change to add sense of movement
 - SFX noises *
 - Space or enter key must be hit to collect resources or they are lost. Not simple collision *
-- When game is lost, Blue's position reverts to start of canvas and popup failure message appears *
 
 # Gameover
 - High score printed *
