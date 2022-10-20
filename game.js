@@ -9,7 +9,7 @@ const backgroundMusic = new Audio("./sound/background-song.mp3");
 backgroundMusic.volume = 0.2;
 
 const gameoverMusic = new Audio("./sound/gameover-song.mp3");
-gameoverMusic.volume = 0.2;
+gameoverMusic.volume = 0.2; 
 
 // BACKGROUND IMAGES
 const backgroundImg1 = new Image();
@@ -66,19 +66,15 @@ let ballWidth = 60;
 let ballHeight = 60;
 let pigeonWidth = 80;
 let pigeonHeight = 80;
-let resourceMove = -4;
-let startingXRes = canvasWidth
+let resourceMove = -1;
 
-
-const resourcesArr = [
-  {img: mapImg, x: startingXRes, y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
-  {img: compassImg, x: startingXRes * 1.5, y: Math.floor(Math.random() * ((canvasHeight - compassHeight) - 0 + 1) + 0), width: compassWidth, height: compassHeight},
-  {img: boneImg, x: startingXRes * 2, y: Math.floor(Math.random() * ((canvasHeight - boneHeight) - 0 + 1) + 0), width: boneWidth, height: boneHeight},
-  {img: ballImg, x: startingXRes * 2.5, y: Math.floor(Math.random() * ((canvasHeight - ballHeight) - 0 + 1) + 0), width: ballWidth, height: ballHeight},
-  {img: pigeonImg, x: startingXRes * 3, y: Math.floor(Math.random() * ((canvasHeight - pigeonHeight) - 0 + 1) + 0), width: pigeonWidth, height: pigeonHeight},
+let resourcesArr = [
+  {img: mapImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
+  {img: compassImg, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - compassHeight) - 0 + 1) + 0), width: compassWidth, height: compassHeight},
+  {img: boneImg, x: Math.floor(Math.random() * ((canvasWidth * 2) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - boneHeight) - 0 + 1) + 0), width: boneWidth, height: boneHeight},
+  {img: ballImg, x: Math.floor(Math.random() * ((canvasWidth * 2.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - ballHeight) - 0 + 1) + 0), width: ballWidth, height: ballHeight},
+  {img: pigeonImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - pigeonHeight) - 0 + 1) + 0), width: pigeonWidth, height: pigeonHeight},
 ]
-
-let newOrderResourcesArr = [];
 
 // DANGERS IMAGES
 const rubbish1Img = new Image ();
@@ -101,23 +97,20 @@ let trapWidth = 91;
 let trapHeight = 60;
 let sinkholeWidth = 150;
 let sinkholeHeight = 55;
-let dangerMove = -4;
-let startingX = canvasWidth + 300;
+let dangerMove = -1;
 
-const dangersArr = [
-  {img: rubbish1Img, x: startingX, y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
-  {img: rubbish2Img, x: startingX * 1.5, y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
-  {img: poisonImg, x: startingX * 2, y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
-  {img: trapImg, x: startingX * 2.5, y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight},
-  {img: sinkholeImg, x: startingX * 3, y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight},
-  {img: rubbish1Img, x: startingX *2.25, y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
-  {img: sinkholeImg, x: startingX * 3.25, y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight},
-  {img: poisonImg, x: startingX * 0.5, y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
-  {img: rubbish2Img, x: startingX * 1.25, y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
-  {img: trapImg, x: startingX * 3, y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight}
+let dangersArr = [
+  {img: rubbish1Img, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
+  {img: rubbish2Img, x: Math.floor(Math.random() * ((canvasWidth * 2.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
+  {img: poisonImg, x: Math.floor(Math.random() * ((canvasWidth * 1.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
+  {img: trapImg, x: Math.floor(Math.random() * ((canvasWidth * 2.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight},
+  {img: sinkholeImg, x: Math.floor(Math.random() * ((canvasWidth * 1.75) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight},
+  {img: rubbish1Img, x: Math.floor(Math.random() * ((canvasWidth * 2.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
+  {img: sinkholeImg, x: Math.floor(Math.random() * ((canvasWidth * 3.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight},
+  {img: poisonImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
+  {img: trapImg, x: Math.floor(Math.random() * ((canvasWidth * 1.75) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight},
+  {img: rubbish2Img, x: Math.floor(Math.random() * ((canvasWidth * 1.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height}
 ]
-
-let newOrderDangersArr = [];
 
 // GAME ID
 let gameId = 0;
@@ -133,7 +126,7 @@ const scoreNumber = document.querySelector(".score span");
 const finalScore = document.querySelector(".final-score");
 let scoreCounter = 0;
 
-
+const gameoverMsg = document.querySelector(".message");
 
 //ON LOAD
 window.onload = () => {
@@ -148,28 +141,39 @@ const startGame = () => {
     gameplayScreen.style.display = "block"
     gameoverScreen.style.display = "none"
     backgroundMusic.play();
-    shuffleResources(resourcesArr);
-    shuffleDangers(dangersArr); 
-    animate();    
+    animate();
 }
 
 const animate = () => {
 animateBackground();
 gameId = requestAnimationFrame(animate)
-if (gameId % 500 === 0 && resourceMove >= -8 && dangerMove >= -8) {
+if (gameId % 500 === 0 && resourceMove >= -6 && dangerMove >= -6) {
   resourceMove -= 0.5;
   dangerMove -= 0.5;
 }
 if (isGameOver) {
   finalScore.innerText = `Score: ${scoreCounter}`
+
+  // GAMEOVER MESSAGES
+  if (scoreCounter >= 0 && scoreCounter <= 5) {
+    gameoverMsg.innerText = "A bit of a pawly effort!"
+  }
+  else if (scoreCounter >= 6 && scoreCounter <= 10) {
+    gameoverMsg.innerText = "You are terrwoofic!"
+  }
+  
+  else {
+    gameoverMsg.innerText = "Home is just around the corner!"
+  }
+  clearCanvas();
   cancelAnimationFrame(gameId)
+ 
   backgroundMusic.pause();
   gameoverMusic.play();
   splashScreen.style.display = "none"
   gameplayScreen.style.display = "none"
   gameoverScreen.style.display = "block"
 }
-
 };
 
 // ANIMATION FUNCTIONS
@@ -187,10 +191,11 @@ const animateBackground = () => {
   moveCanvas5();
   drawBlue();
   moveBlueXAxis();
-  moveBlueYAxis();
-  drawResource();
+  moveBlueYAxis();   
+  drawResource();         
   drawDanger();
   };
+
 
   // CANVAS FUNCTIONS
 const clearCanvas = () => {ctx.clearRect(0, 0, canvasWidth, canvasHeight)};
@@ -260,32 +265,19 @@ const moveCanvas5 = () => {
             }
 
   // RESOURCE FUNCTIONS
-    const shuffleResources = (array) => {
-      let resourcesArrCopy = [];
-      for (let i = 0; i < array.length; i ++) {
-        const arrElement = array[i];
-resourcesArrCopy.push(arrElement);
-      }
-      const shuffledResourcesArr = resourcesArrCopy.sort((a, b) => 0.5 - Math.random());
-      shuffledResourcesArr.forEach(resource => {
-        newOrderResourcesArr.push(resource)
-              });
-            }; 
 
    const drawResource = () => {
-    newOrderResourcesArr.forEach(resource => {
+    resourcesArr.forEach(resource => {
       ctx.drawImage(resource.img, resource.x, resource.y, resource.width, resource.height)
-      let resourceCurrentPosition = resource.x += resourceMove;
-      if (resourceCurrentPosition > 0) {
-        resourceCurrentPosition
-      } else {
-        resource.x = canvasWidth + 150
+      resource.x += resourceMove;
+      if (resource.x < 0) {
+        resource.x = Math.floor(Math.random() * ((canvasWidth * 3) - (canvasWidth * 2) + 1) + (canvasWidth * 2))
       }
-      if (resource.x < blueStartX + blueWidth - 30 &&
+      if (resource.x < blueStartX + blueWidth - 40 &&
           resource.x > blueStartX &&
-          resource.y > blueStartY - 30 &&
+          resource.y > blueStartY - 40 &&
           resource.y < blueStartY + blueHeight)
-       {resource.x = canvasWidth * 2
+       {resource.x = Math.floor(Math.random() * ((canvasWidth * 3.5) - (canvasWidth * 2.5) + 1) + (canvasWidth * 2.5))
         if ((resource.img === boneImg || resource.img === pigeonImg) && strengthCounter < 3) {
           strengthCounter += 1;
           if(strengthCounter === 3) {
@@ -307,90 +299,65 @@ resourcesArrCopy.push(arrElement);
     }
 
 // DANGER FUNCTIONS
-    const shuffleDangers = (array) => {
-      let dangersArrCopy = [];
-      for (let i = 0; i < array.length; i ++) {
-        const arrElement = array[i];
-dangersArrCopy.push(arrElement);
-      }
-      const shuffledDangersArr = dangersArrCopy.sort((a, b) => 0.5 - Math.random());
-      shuffledDangersArr.forEach(danger => {
-        newOrderDangersArr.push(danger)
-              });
-            }; 
 
       const drawDanger = () => {
-          newOrderDangersArr.forEach(danger => {
+          dangersArr.forEach(danger => {
           ctx.drawImage(danger.img, danger.x, danger.y, danger.width, danger.height)
-           let dangerCurrentPosition = danger.x += dangerMove;
-          if (dangerCurrentPosition > 0) {
-            dangerCurrentPosition
-            } else {
-          danger.x = canvasWidth + 150
+           danger.x += dangerMove;
+          if (danger.x < 0) {
+          danger.x = Math.floor(Math.random() * ((canvasWidth * 1.75) - canvasWidth + 1) + canvasWidth)
                 }
-          if (danger.x < blueStartX + blueWidth - 30 &&
+          if (danger.x < blueStartX + blueWidth - 40 &&
                   danger.x > blueStartX &&
-                  danger.y > blueStartY - 30 &&
+                  danger.y > blueStartY - 40 &&
                   danger.y < blueStartY + blueHeight)
               {strengthCounter -= 2;
-              if(strengthCounter < 0) {
-                danger.x = canvasWidth * 2.5
+          if(strengthCounter < 0) {
+                danger.x = Math.floor(Math.random() * ((canvasWidth * 3) - (canvasWidth * 1.5) + 1) + (canvasWidth * 1.5))
                 isGameOver = true;
               }
-                else{danger.x = canvasWidth * 2.5
-                  if(strengthCounter === 3) {
+          else{danger.x = Math.floor(Math.random() * ((canvasWidth * 3) - (canvasWidth * 1.5) + 1) + (canvasWidth * 1.5))
+           if(strengthCounter === 3) {
                   strengthHearts.setAttribute("src", "./images/full-strength.png") }
-                  else if (strengthCounter === 2) {
+           else if (strengthCounter === 2) {
                     strengthHearts.setAttribute("src", "./images/medium-strength.png")
-                  }
-                  else if (strengthCounter === 1) {
+            }
+             else if (strengthCounter === 1) {
                     strengthHearts.setAttribute("src", "./images/low-strength.png")
-                  }
-                }
-              };
-              })
-              }
+            }
+          }
+         };
+       })
+     }
 
-
-// GAMEOVER MESSAGES
-const gameoverMsg = document.querySelector(".message");
-if (finalScore <= 15) {
-  gameoverMsg.innerText = "A bit of a paw effort!"
-}
-else if (finalScore <= 30 && finalScore > 15) {
-  gameoverMsg.innerText = "You are terrwoofic!"
-}
-else if (finalScore <= 45 && finalScore > 30) {
-  gameoverMsg.innerText = "Home is just around the corner!"
-}
 
 // EVENT LISTENERS
-            document.addEventListener("keydown", event => {
-              if(event.key === "ArrowUp") {
-                blueMoveY = blueMoveUp;
-              } else if (event.key === "ArrowDown") {
+ document.addEventListener("keydown", event => {
+   if(event.key === "ArrowUp") {
+    blueMoveY = blueMoveUp;
+    } else if (event.key === "ArrowDown") {
                 blueMoveY = blueMoveDown;
-              }
-              else if (event.key === "ArrowRight") {
+     }
+    else if (event.key === "ArrowRight") {
                 blueMoveX = blueMoveRight;
-              }
-              else if (event.key === "ArrowLeft") {
-                blueMoveX = blueMoveLeft;
-              }
-            });
+   }
+     else if (event.key === "ArrowLeft") {
+      blueMoveX = blueMoveLeft;
+    }
+    });
 
-            document.addEventListener("keyup", event => {
-              blueMoveX = 0;
-              blueMoveY = 0;
-            })
+document.addEventListener("keyup", event => {
+  blueMoveX = 0;
+   blueMoveY = 0;
+   })
 
-            backgroundMusic.addEventListener("ended", event => {
-              backgroundMusic.play();
-            })
+backgroundMusic.addEventListener("ended", event => {
+backgroundMusic.play();
+ })
 
-            gameoverMusic.addEventListener("ended", event => {
-              gameoverMusic.play();
-            })
+gameoverMusic.addEventListener("ended", event => {
+gameoverMusic.play();
+})
 
 gameplayScreen.style.display = "none"
 gameoverScreen.style.display = "none"
@@ -414,14 +381,26 @@ document.getElementById("restart-button").onclick = () => {
   blueMoveRight = +8
   blueMoveLeft = -8
   resourceMove = -4;
-  startingXRes = canvasWidth;
+  resourcesArr = [
+    {img: mapImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
+    {img: compassImg, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - compassHeight) - 0 + 1) + 0), width: compassWidth, height: compassHeight},
+    {img: boneImg, x: Math.floor(Math.random() * ((canvasWidth * 2) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - boneHeight) - 0 + 1) + 0), width: boneWidth, height: boneHeight},
+    {img: ballImg, x: Math.floor(Math.random() * ((canvasWidth * 2.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - ballHeight) - 0 + 1) + 0), width: ballWidth, height: ballHeight},
+    {img: pigeonImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - pigeonHeight) - 0 + 1) + 0), width: pigeonWidth, height: pigeonHeight},
+  ]
   dangerMove = -4;
-  startingX = canvasWidth + 300;
-  
-  newOrderResourcesArr = [];
-  resourcesArrCopy = [];
-  newOrderDangersArr = [];
-  dangersArrCopy = [];
+  dangersArr = [
+    {img: rubbish1Img, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
+    {img: rubbish2Img, x: Math.floor(Math.random() * ((canvasWidth * 2.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height},
+    {img: poisonImg, x: Math.floor(Math.random() * ((canvasWidth * 1.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
+    {img: trapImg, x: Math.floor(Math.random() * ((canvasWidth * 2.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight},
+    {img: sinkholeImg, x: Math.floor(Math.random() * ((canvasWidth * 1.75) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight},
+    {img: rubbish1Img, x: Math.floor(Math.random() * ((canvasWidth * 2.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
+    {img: sinkholeImg, x: Math.floor(Math.random() * ((canvasWidth * 3.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - sinkholeHeight) - 0 + 1) + 0), width: sinkholeWidth, height: sinkholeHeight},
+    {img: poisonImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - poisonHeight) - 0 + 1) + 0), width: poisonWidth, height: poisonHeight},
+    {img: trapImg, x: Math.floor(Math.random() * ((canvasWidth * 1.75) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - trapHeight) - 0 + 1) + 0), width: trapWidth, height: trapHeight},
+    {img: rubbish2Img, x: Math.floor(Math.random() * ((canvasWidth * 1.25) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish2Height) - 0 + 1) + 0), width: rubbish2Width, height: rubbish2Height}
+  ]
 
   gameId = 0;
   isGameOver = false;
@@ -430,6 +409,7 @@ document.getElementById("restart-button").onclick = () => {
   scoreCounter = 0;
   scoreNumber.innerText = 0;
   strengthHearts.setAttribute("src", "./images/zero-strength.png");
+  gameoverMsg.innerText = "";
   startGame();
 }
 }
