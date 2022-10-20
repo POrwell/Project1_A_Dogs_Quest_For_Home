@@ -11,6 +11,18 @@ backgroundMusic.volume = 0.2;
 const gameoverMusic = new Audio("./sound/gameover-song.mp3");
 gameoverMusic.volume = 0.2; 
 
+const pigeonSound = new Audio("./sound/pigeon.mp3");
+pigeonSound.volume = 0.3;
+
+const dingSound = new Audio("./sound/ding.mp3")
+dingSound.volume = 0.3;
+
+const failSound = new Audio("./sound/fail.mp3");
+failSound.volume = 0.3;
+
+const slurpSound = new Audio("./sound/slurp.mp3");
+slurpSound.volume = 0.3;
+
 // BACKGROUND IMAGES
 const backgroundImg1 = new Image();
 backgroundImg1.src = "./images/canvas-1.jpg"
@@ -287,6 +299,12 @@ const moveCanvas5 = () => {
           resource.y > blueStartY - 40 &&
           resource.y < blueStartY + blueHeight)
        {resource.x = Math.floor(Math.random() * ((canvasWidth * 3.5) - (canvasWidth * 2.5) + 1) + (canvasWidth * 2.5))
+        if(resource.img === boneImg) {
+          slurpSound.play();
+        }
+        if(resource.img === pigeonImg) {
+          pigeonSound.play();
+        }
         if ((resource.img === boneImg || resource.img === pigeonImg) && strengthCounter < 3) {
           strengthCounter += 1;
           if(strengthCounter === 3) {
@@ -299,6 +317,7 @@ const moveCanvas5 = () => {
           }
         }
         else {
+          dingSound.play();
           scoreCounter += 1;
           scoreNumber.setAttribute("style", "font-size: 45px")
           scoreNumber.innerText = `${scoreCounter}`;
@@ -320,7 +339,8 @@ const moveCanvas5 = () => {
                   danger.x > blueStartX &&
                   danger.y > blueStartY - 40 &&
                   danger.y < blueStartY + blueHeight)
-              {strengthCounter -= 2;
+              {failSound.play();
+                strengthCounter -= 2;
           if(strengthCounter < 0) {
                 danger.x = Math.floor(Math.random() * ((canvasWidth * 3) - (canvasWidth * 1.5) + 1) + (canvasWidth * 1.5))
                 isGameOver = true;

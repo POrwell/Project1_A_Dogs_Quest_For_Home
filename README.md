@@ -33,10 +33,10 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 
 # Gameplay
 - Canvas images change to add sense of movement
-- SFX noises *
+- SFX noises
 
 # Gameover
-- High score printed *
+- High score printed
 
 ## Data structure
 # main.js
