@@ -66,7 +66,7 @@ let ballWidth = 60;
 let ballHeight = 60;
 let pigeonWidth = 80;
 let pigeonHeight = 80;
-let resourceMove = -1;
+let resourceMove = -4;
 
 let resourcesArr = [
   {img: mapImg, x: Math.floor(Math.random() * ((canvasWidth * 3) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - mapHeight) - 0 + 1) + 0), width: mapWidth, height: mapHeight},
@@ -97,7 +97,7 @@ let trapWidth = 91;
 let trapHeight = 60;
 let sinkholeWidth = 150;
 let sinkholeHeight = 55;
-let dangerMove = -1;
+let dangerMove = -4;
 
 let dangersArr = [
   {img: rubbish1Img, x: Math.floor(Math.random() * ((canvasWidth * 1.5) - canvasWidth + 1) + canvasWidth), y: Math.floor(Math.random() * ((canvasHeight - rubbish1Height) - 0 + 1) + 0), width: rubbish1Width, height: rubbish1Height},
@@ -156,7 +156,7 @@ if (isGameOver) {
 
   // GAMEOVER MESSAGES
   if (scoreCounter >= 0 && scoreCounter <= 5) {
-    gameoverMsg.innerText = "A bit of a pawly effort!"
+    gameoverMsg.innerText = "A bit of a paw effort!"
   }
   else if (scoreCounter >= 6 && scoreCounter <= 10) {
     gameoverMsg.innerText = "You are terrwoofic!"
