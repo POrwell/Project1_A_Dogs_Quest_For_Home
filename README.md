@@ -1,9 +1,9 @@
 # Project1_A_Dogs_Quest_For_Home
 A simple game built using HTML, CSS and JS based on canvas and DOM manipulation.
-Click here to see deployed game.
+Click here to see deployed game: https://porwell.github.io/Project1_A_Dogs_Quest_For_Home/
 
 ## Description
-A Dog's Quest for Home is a game where the player must help navigate Blue the dog from her life in an abandoned warehouse to a new cosy home with a loving family. She must traverse many landscapes, collecting resources and dodging dangers as she goes. Resources will help keep her strength up, but dangers will reduce it. The game ends when Blue's strength diminishes to zero and she has failed her quest and must begin again. Certain resources will also allow the player to collect points.
+A Dog's Quest for Home is a game where the player must help navigate Blue the dog from her life in an abandoned warehouse to a new cosy home with a loving family. She must traverse many landscapes, collecting resources and dodging dangers as she goes. Resources will help keep her strength up, but dangers will reduce it. The game ends when Blue's strength diminishes to zero and she has failed her quest and must begin again. Certain resources will also allow the player to collect points. The player can then compete against their high score each round.
 
 ## MVP (DOM - Canvas)
 # Splash 
@@ -29,7 +29,7 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 
 ## Backlog
 # Splash
-
+n/a
 
 # Gameplay
 - Canvas images change to add sense of movement
@@ -40,20 +40,18 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 
 ## Data structure
 # main.js
-- createSplashScreen()
-- createGameScreen()
-- createGameoverScreen()
+- create Splash Screen
+- create Game Screen
+- create Gameover Screen
 
 # game.js
-- game() 
-- startLoop()
-- loopId
+- startGame() 
+- animate()
+- animateBackground()
+- gameId
 - clearCanvas()
 - moveCanvas()
 - drawCanvas()
-- scoreCount()
-- resourceCount()
-- dangerCount()
 
 # blue.js
 - positioning
@@ -65,10 +63,10 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 # resource.js
 - positioning
 - movement
-- class Resource
-- new Resource() {
-    moveResource()
+- resourceArr
+- drawResource() {
     drawResource()
+    moveResource()
 }
 - create map
 - create compass
@@ -77,14 +75,15 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 - create pigeon
 - check collision
 - add to strength bar
+- add to score
 
 # danger.js
 - positioning
 - movement
-- class Danger
-- new Danger() {
-    moveDanger()
+- dangerArr
+- drawDanger() {
     drawDanger()
+    moveDanger()
 }
 - create rubbish1
 - create rubbish2
@@ -96,13 +95,13 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 
 # strengthbar.js
 - create
-- increaseFill()
-- decreaseFill()
+- add to strengthCounter
 
 # score.js
 - create
 - update total
-
+- add to scoreCounter
+- update highScoreCounter
 
 ## States y States Transitions
 - Splash
@@ -131,6 +130,23 @@ A Dog's Quest for Home is a game where the player must help navigate Blue the do
 [x] game - game over
 [x] game - event listener arrow keys
 [x] game - add audio
+[x] game - gameId not resetting
+[x] main - medals
+[x] main - splash screen styling
+[x] main - gameplay screen styling including score number
+[x] main - strength bar styling
+[x] main - gameover screen styling
+[x] main - reorganise code/tidy JS
+[x] main - change music to make less repetitive
+[x] main - fix start button sensitivity
+[x] main - fix restart button size
+[x] main - address dizziness of game
+[x] game - add audio
+[x] game - change sensitivity of Blue
+[x] game - create high score
+[x] game - SFX sounds
+[x] game - ensure objects return to correct starting position
+
 
 ## Links
 Trello - https://trello.com/b/uw0SVOy2/tasks
