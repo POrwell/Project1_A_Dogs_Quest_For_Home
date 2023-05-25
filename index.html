@@ -1,79 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Dog's Quest for Home</title>
-    <link rel="icon" href="../Project1_A_Dogs_Quest_For_Home/images/icon.png">
-    <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>A Dog's Quest for Home</title>
+        <link rel="icon" href="../Project1_A_Dogs_Quest_For_Home/images/icon.png">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
 
-    <!--SPLASH SCREEN-->
-<div id = "splash-screen">
-    <header class = "header">
-    <h1>A Dog's Quest for Home</h1>
-</header>
-<div class = "instructions">
-    <div>
-    <h2>How to Play</h2>
-    <p>Help navigate Blue from her life in an abandoned forest to a warm 
-        home with a loving family. Collect resources to help keep her strength up or collect points, 
-        but be sure to dodge any danger as you go or she may lose too much strength and have to begin her quest again!
-        </p>
-    </div>
-    <div class = "controls">
-    <ul>
-        <li>move Blue around using the arrow keys</li>
-        <li>collect resources to build strength and win points</li>
-        <li>dodge dangers to avoid a drop in strength</li>
-    </ul>
-    <div>
-        <img class="keyboard-img" src="./images/keyboard (1).png">
-    </div>
-</div>
-    <button id = "start-button">
-        <img src="./images/start-btn.png" class="button-img">
-    </button>
-</div>
-<div class = "footer">
-    <div class = "opening-img-ctr">
-    <img src="./images/Blue-opening.png" alt="cartoon dog" class="opening-img">
-</div>
-</div>
-</div>
-
-<!--GAMEPLAY SCREEN-->
-<div id = "gameplay-screen">
-    <div class="status">
-        <article class="strength-bar">
-            <p class="strength-title">Strength: </p>
-        <img src="./images/zero-strength.png" class ="strength-bar-img">
-        </article>
-        <article class="score">Score -    <span style = "font-size: 35px">0</span></article>
-    </div>
-<div class = game-board>
-    <canvas id="canvas" width="1920" height="800"></canvas>
-</div>
-</div>
-
-
-
-<div id = "gameover-screen">
-    <div class = "gameover-ctr">
-    <p class = "end-instructions">Oh no!
-        <br>Blue will have to start her quest again!</p>
-    <div class = "final-score">Placeholder text</div>
-    <div class = "high-score">Placeholder text</div>
-    <div>
-        <p class = "message"></p>
+        <!--SPLASH SCREEN-->
+        <div id="splash-screen">
+            <header class="header">
+                <h1>A Dog's Quest for Home</h1>
+            </header>
+            <div class="instructions">
+                <div>
+                    <h2>How to Play</h2>
+                    <p>Help navigate Blue from her life in an abandoned forest to a warm 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                home with a loving family. Collect resources to help keep her strength up or collect points, 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                but be sure to dodge any danger as you go or she may lose too much strength and have to begin her quest again!
+                    </p>
+                </div>
+                <div class="controls">
+                    <ul>
+                        <li>move Blue around using the arrow keys</li>
+                        <li>collect resources to build strength and win points</li>
+                        <li>dodge dangers to avoid a drop in strength</li>
+                    </ul>
+                    <div>
+                        <img class="keyboard-img" src="./images/keyboard (1).png">
+                    </div>
+                </div>
+                <button id="start-button">
+                    <img src="./images/start-btn.png" class="button-img">
+                </button>
+            </div>
+            <div class="footer">
+                <div class="opening-img-ctr">
+                    <img src="./images/Blue-opening.png" alt="cartoon dog" class="opening-img">
+                </div>
+            </div>
         </div>
-    <button id = "restart-button">
-    <img src="./images/restart-btn.png" class = "restart-btn-img">
-    </button>
-</div>
-</div>
-<script type="text/javascript" src="./game.js"></script>
-</body>
+
+        <!--GAMEPLAY SCREEN-->
+        <div id="gameplay-screen">
+            <div class="status">
+                <article class="strength-bar">
+                    <p class="strength-title">Strength:
+                    </p>
+                    <img src="./images/zero-strength.png" class="strength-bar-img">
+                </article>
+                <article class="score">Score -
+                    <span style="font-size: 35px">0</span>
+                </article>
+            </div>
+            <div class="game-board">
+                <canvas id="canvas" width="1920" height="800"></canvas>
+            </div>
+        </div>
+
+
+        <div id="gameover-screen">
+            <div class="gameover-ctr">
+                <p class="end-instructions">Oh no!
+                    <br>Blue will have to start her quest again!</p>
+                <div class="final-score">Placeholder text</div>
+                <div class="high-score">Placeholder text</div>
+                <div>
+                    <p class="message"></p>
+                </div>
+                <button id="restart-button">
+                    <img src="./images/restart-btn.png" class="restart-btn-img">
+                </button>
+            </div>
+        </div>
+        <script type="text/javascript" src="./game.js"></script>
+    </body>
 </html>

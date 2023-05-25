@@ -147,7 +147,7 @@ window.onload = () => {
 
  //START BUTTON  
 document.getElementById("start-button").onclick = () => {
-  backgroundMusic.play();
+ // backgroundMusic.play();
   startGame() }
 
 const startGame = () => {
@@ -191,7 +191,7 @@ if (isGameOver) {
   backgroundMusic.pause();
   gameoverMusic.play();
   splashScreen.style.display = "none"
-  gameplayScreen.style.display = "none"
+ gameplayScreen.style.display = "none"
   gameoverScreen.style.display = "block"
 }
 };
