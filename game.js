@@ -147,7 +147,7 @@ window.onload = () => {
 
  //START BUTTON  
 document.getElementById("start-button").onclick = () => {
- // backgroundMusic.play();
+ backgroundMusic.play();
   startGame() }
 
 const startGame = () => {
